@@ -39,7 +39,3 @@ def dump():
         csv = response.content.decode(encoding, encoding_error)
         print(f'imported {sheet.title}')
         client.import_csv(sheet.id, csv)
-
-
-if __name__ == '__main__':
-    dump()

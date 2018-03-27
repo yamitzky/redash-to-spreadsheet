@@ -24,6 +24,13 @@ To get `OAUTH2_JSON_CREDENTIAL`, you can see [this guide](http://gspread.readthe
 
 `REDASH_API_KEY` must be [User API Key](https://help.redash.io/article/128-api-key-authentication).
 
+## Prepare Spreadsheet
+
+Create new spreadsheet prefixed with `Qxxx:`, e.g. `Q123: DAU table`). If your sheet's name is `Q123: DAU table`, query result with id `123` will be exported.
+This name pattern can be configured by setting `SHEET_NAME_PATTERN`.
+
+Then, add permission of the created service account `xxxxx@yyyyy.iam.gserviceaccount.com` to the sheet.
+
 ## Usage
 
 Run `./redash-to-spreadsheet` or `docker run -it --rm --env-file .env yamitzky/redash-to-spreadhseet`.

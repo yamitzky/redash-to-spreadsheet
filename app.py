@@ -17,7 +17,6 @@ pattern = re.compile(os.environ.get('SHEET_NAME_PATTERN', '^Q(?P<query_id>\d+):'
 redash_api_key = os.environ['REDASH_API_KEY']
 redash_url = os.environ['REDASH_URL']
 encoding = os.environ.get('REDASH_CSV_WRITER_ENCODING', 'utf-8')
-encoding_error = os.environ.get('REDASH_CSV_WRITER_ERRORS', 'strict')
 
 
 def dump():
@@ -36,6 +35,6 @@ def dump():
         if not response.ok:
             print('response not ok')
             continue
-        csv = response.content.decode(encoding, encoding_error)
+        csv = response.text
         print(f'imported {sheet.title}')
-        client.import_csv(sheet.id, csv)
+        client.import_csv(sheet.id, csv.encode(encoding))
